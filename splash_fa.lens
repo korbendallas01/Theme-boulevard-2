@@ -1,0 +1,69 @@
+<koken:include file="inc/head.html" />
+<koken:include file="inc/header-splash.html" />
+
+<koken:load limit="4">
+	<koken:head>
+		<meta property="og:site_name" content="{{ site.title }}" />
+		<meta property="og:title" content="{{ labels.album.plural }}" />
+		<meta property="og:description" content="{{ site.description strip_html='true' }}" />
+		<meta property="og:type" content="website" />
+		<koken:first>
+			<koken:covers>
+				<koken:first>
+					<meta property="og:image" content="{{ content.presets.medium_large.url }}" />
+					<meta property="og:image:width" content="{{ content.presets.medium_large.width }}" />
+					<meta property="og:image:height" content="{{ content.presets.medium_large.height }}" />
+				</koken:first>
+			</koken:covers>
+		</koken:first>
+		<meta property="og:url" content="{{ location.site_url }}{{ location.here }}" />
+		<koken:not empty="profile.twitter">
+			<meta name="twitter:card" content="gallery" />
+			<meta name="twitter:site" content="@{{ profile.twitter }}" />
+			<meta name="twitter:creator" content="@{{ profile.twitter }}" />
+			<koken:loop>
+				<koken:covers>
+					<koken:shift>
+						<meta name="twitter:image{{ index }}" content="{{ content.presets.medium_large.cropped.url }}">
+					</koken:shift>
+				</koken:covers>
+			</koken:loop>
+		</koken:not>
+	</koken:head>
+</koken:load>
+
+<div id="splash" class="spin_{{ settings.show_content_load_spin }}">
+
+	<koken:if true="settings.show_content_load_spin">
+		<koken:if data="settings.spin_style" equals="halfcirc"><div class="spinner_pos"><div class="spinner"></div></div></koken:if>
+	</koken:if>
+
+	<koken:pulse jsvar="splashy" group="splash_fa" link_to="album" can_link_to_album="true" width="100%" height="100%" crop="fill" transition_duration="0.8" next="#sldshw-next" previous="#sldshw-prev" fallbacktext="No featured albums found. Assign some in the Library." />
+
+	<a href="#" id="sldshw-prev" data-bind-to-key="left" class="hide"></a>
+	<a href="#" id="sldshw-next" data-bind-to-key="right" class="hide"></a>
+
+</div>
+
+<script>
+splashy.on('waiting', function(e) {
+	var settings = {{ settings.to_json fields="show_content_load_spin,spin_style" }};
+	if (settings.show_content_load_spin) {
+		if (e) {
+			if (settings.spin_style == "halfcirc") {
+				$('.spinner_pos').fadeIn();
+			} else {
+				$('#splash').addClass('show_flower');
+			}
+		} else {
+			if (settings.spin_style == "halfcirc") {
+				$('.spinner_pos').fadeOut();
+			} else {
+				$('#splash').removeClass('show_flower');
+			}
+		}
+	}
+});
+</script>
+
+<koken:include file="inc/footer.html" />

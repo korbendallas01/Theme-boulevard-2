@@ -1,0 +1,47 @@
+<header>
+
+	<div class="in">
+
+		<koken:include file="inc/header-icons.html" />
+
+		<nav class="hide_mob">
+			<koken:navigation />
+			<koken:if true="settings.show_search">
+				<koken:search />
+			</koken:if>
+			<ol id="lane-nav">
+				<koken:if true="settings.show_album_nav">
+				<li>
+					<a href="#" id="prev" title="{{ language.previous }}" data-bind-to-key="left"><span class="arrow">&larr;</span>&nbsp;{{ language.previous }}</a>
+				</li>
+				<li>
+					<a href="#" id="next" title="{{ language.next }}" data-bind-to-key="right">{{ language.next }}&nbsp;<span class="arrow">&rarr;</span></a>
+				</li>
+				</koken:if>
+				<koken:if true="settings.show_album_dl">
+				<li>
+					<koken:album_download>
+						&nbsp;<koken:link title="{{ language.download }}"><i class="kicon-dl"></i></koken:link>
+					</koken:album_download>
+				</li>
+				</koken:if>
+			</ol>
+		</nav>
+
+		<div id="site-title">
+
+			<koken:if data="settings.site_title_type" equals="text">
+				<h1 class="site">
+					<koken:link to="front" title="{{ language.home }}">{{ site.title }}</koken:link>
+				</h1>
+			<koken:else>
+				<koken:link to="front" title="{{ language.home }}"><img src="{{ settings.site_title_img_url }}" alt="{{ site.title }}" class="custom_logo"></koken:link>
+			</koken:if>
+
+			<koken:if true="settings.show_page">&nbsp;<h2 class="tag">/&nbsp;{{ album.title }}</h2></koken:if>
+
+		</div>
+
+	</div>
+
+</header>

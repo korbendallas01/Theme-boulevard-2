@@ -1,0 +1,36 @@
+
+	<koken:event_content>
+
+		<div class="item">
+
+			<koken:link title="{{ language.view_title collate='album.title' }}">
+
+				<koken:img size="{{ settings.thumb_ratio }}" lazy="true" />
+
+			</koken:link>
+
+			<div class="text">
+
+				<koken:if true="settings.albums_show_title">
+					<h2>
+						<koken:link title="{{ language.view_title collate='album.title' }}">
+							{{ content.title }}
+						</koken:link>
+
+						<koken:if true="settings.show_tag_image_rating">
+							&nbsp;{{ rating }}
+						</koken:rating>
+					</h2>
+				</koken:if>
+
+				<koken:if true="settings.albums_show_summary">
+					<p>
+						{{ content.caption }}
+					</p>
+				</koken:if>
+
+			</div>
+
+		</div>
+
+	</koken:event_content>

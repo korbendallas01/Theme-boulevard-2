@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, shrink-to-fit=no">
+
+	<koken:meta />
+	<koken:title />
+
+	<koken:asset file="css/normalize.css" />
+	<koken:asset file="kicons.css" common="true" />
+	<koken:asset file="css/kshare.css" />
+	<koken:settings />
+
+	<koken:asset file="jquery.pjax.js" common="true" />
+	<koken:asset file="js/jquery.mousewheel.min.js" />
+	<koken:asset file="js/jquery.sidr.min.js" />
+	<koken:asset file="js/boulevard.js" />
+
+</head>
+
+<body>
+	<div id="sidr-left" class="mob">
+		<koken:navigation />
+		<koken:if true="settings.show_search">
+			<koken:search />
+		</koken:if>
+	</div>
+	<div id="mob-bttn-row">
+		<div class="w">
+			<div id="mob-pag-bttns" class="vcenter">
+				<a href="#" data-koken-keyboard-scroll-previous><i class="kicon-angle-up"></i></a><a href="#" data-koken-keyboard-scroll-next><i class="kicon-angle-down"></i></a>
+			</div>
+			<a id="mob-menu" class="vcenter" href="#mob-menu"><i class="kicon-mob-menu"></i></a>
+		</div>
+	</div>
+
+	<div id="container">

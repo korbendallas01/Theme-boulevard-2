@@ -1,0 +1,104 @@
+<koken:include file="inc/head.html" />
+
+	<koken:include file="inc/header-essays.html" />
+
+<koken:load>
+
+	<koken:head>
+		<meta property="og:site_name" content="{{ site.title }}" />
+		<meta property="og:title" content="{{ essay.title strip_html='true' }}" />
+		<meta property="og:description" content="{{ essay.excerpt strip_html='true' }}" />
+		<meta property="og:url" content="{{ essay.url }}" />
+		<meta property="og:type" content="website" />
+		<koken:featured_image>
+		<meta property="og:image" content="{{ content.presets.medium_large.url }}" />
+		<meta property="og:image:width" content="{{ content.presets.medium_large.width }}" />
+		<meta property="og:image:height" content="{{ content.presets.medium_large.height }}" />
+		</koken:featured_image>
+		<meta name="medium" content="article" />
+		<koken:not empty="profile.twitter">
+			<koken:featured_image>
+			<meta name="twitter:card" content="summary_large_image" />
+			<meta name="twitter:site" content="@{{ profile.twitter }}" />
+			<meta name="twitter:creator" content="@{{ profile.twitter }}" />
+			<meta name="twitter:image" content="{{ content.presets.medium_large.url }}" />
+			</koken:featured_image>
+		</koken:not>
+	</koken:head>
+
+	<div id="text">
+
+		<div class="lcol">
+
+			<koken:if true="settings.show_essays_link">
+				<p id="essay_all_essays" class="archive_head">
+					<koken:link to="essays" title="{{ language.view_all_essays }}" class="pag back">{{ language.view_all_essays }}</koken:link>
+				</p>
+			</koken:if>
+
+			<article>
+
+				<koken:include file="inc/essay-article.html" />
+
+				<koken:if true="settings.show_disc_essay">
+
+					<div id="kdiscuss">
+
+						<koken:discussion>
+
+							{{ discussion }}
+
+						</koken:discussion>
+
+					</div>
+
+				</koken:if>
+
+			</article>
+
+			<div id="next-prev">
+					<div class="next">
+						<koken:next>
+							<h3>
+								<koken:link title="{{ language.read_title collate='essay.title' }}" class="title">
+									{{ essay.title truncate="60" }}
+								</koken:link>
+							</h3>
+							<koken:time class="item_meta" />
+							<p class="small">
+								{{ essay.excerpt }}
+							</p>
+						</koken:next>
+					</div>
+					<div class="prev">
+						<koken:previous>
+							<h3>
+								<koken:link title="{{ language.read_title collate='essay.title' }}" class="title">
+									{{ essay.title truncate="60" }}
+								</koken:link>
+							</h3>
+							<koken:time class="item_meta" />
+							<p class="small">
+								{{ essay.excerpt }}
+							</p>
+						</koken:previous>
+					</div>
+			</div>
+
+		</div>
+
+		<div class="rcol">
+
+			<koken:if true="settings.essay_show_aside">
+
+				<koken:include file="inc/essay-aside.html" />
+
+			</koken:if>
+
+		</div>
+
+	</div>
+
+</koken:load>
+
+<koken:include file="inc/footer.html" />
